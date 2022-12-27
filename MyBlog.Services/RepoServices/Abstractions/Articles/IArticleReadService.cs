@@ -9,7 +9,12 @@ using System.Threading.Tasks;
 namespace MyBlog.Services.RepoServices.Abstractions.Articles
 {
     public interface IArticleReadService
-    {
+    {      
         Task<List<ArticleVM>> GetAllArticleAsync();
+
+
+
+
+
     }
 }
