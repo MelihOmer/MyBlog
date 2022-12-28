@@ -26,7 +26,8 @@ namespace MyBlog.Data.Mappings
                 CategoryId = Guid.Parse("78F5F289-FFB9-4588-B3C9-888407CCF129"),
                 CreatedBy = "Admin Test",
                 CreatedDate = DateTime.Now,
-                IsDeleted = false
+                IsDeleted = false,
+                UserId = Guid.Parse("B0F21285-8B81-4C46-BC74-3E1DB74290FB")
             },new Article
             {
                 Id = Guid.Parse("41646B7A-8C51-4A7A-86F7-C834A2FF5881"),
@@ -36,7 +37,8 @@ namespace MyBlog.Data.Mappings
                 CategoryId = Guid.Parse("C0F71C92-E8C9-4D75-B3EC-C00C9240FE8B"),
                 CreatedBy = "Admin Test",
                 CreatedDate = DateTime.Now,
-                IsDeleted = false
+                IsDeleted = false,
+                UserId = Guid.Parse("D617EF9E-6C36-4099-8220-6372AAF5B196")
             }
             );
         }

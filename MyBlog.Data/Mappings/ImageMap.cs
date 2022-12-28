@@ -21,7 +21,8 @@ namespace MyBlog.Data.Mappings
                 CreatedDate = DateTime.Now,
                 FileName = "images/TestImage",
                 FileType = "JPEG",
-                IsDeleted = false
+                IsDeleted = false,
+                UserId = Guid.Parse("B0F21285-8B81-4C46-BC74-3E1DB74290FB")
 
             },
             new Image
@@ -32,7 +33,8 @@ namespace MyBlog.Data.Mappings
                 CreatedDate = DateTime.Now,
                 FileName = "images/vs2022images",
                 FileType = "JPEG",
-                IsDeleted = false
+                IsDeleted = false,
+                UserId =  Guid.Parse("D617EF9E-6C36-4099-8220-6372AAF5B196")
             });
         }
     }

@@ -12,6 +12,9 @@ namespace MyBlog.Entity.Entities
         public Guid CategoryId { get; set; }
         public Category Category { get; set; }
         public ICollection<Image> Images { get; set; }
- 
+
+        public Guid UserId { get; set; }
+        public AppUser User { get; set; }
+
     }
 }
