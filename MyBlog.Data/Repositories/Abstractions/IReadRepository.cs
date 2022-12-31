@@ -11,8 +11,8 @@ namespace MyBlog.Data.Repositories.Abstractions
 {
     public interface IReadRepository<T> where T:class,IBaseEntity,new()
     {
-        Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter = null, params Expression<Func<T, bool>>[] includeProperties);
-        Task<T> GetAsync(Expression<Func<T, bool>> filter, params Expression<Func<T, bool>>[] includeProperties);
+        Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter = null, params Expression<Func<T, object>>[] includeProperties);
+        Task<T> GetAsync(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] includeProperties);
         Task<T> GetById(Guid id);
         Task<bool> AnyAsync(Expression<Func<T, bool>> filter);
         Task<int> Count(Expression<Func<T, bool>> filter = null);

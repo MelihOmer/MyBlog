@@ -30,7 +30,7 @@ namespace MyBlog.Data.Repositories.Concretes
             return await Table.CountAsync(filter);
         }
 
-        public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter = null,params Expression<Func<T, bool>>[] includeProperties)
+        public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter = null,params Expression<Func<T, object>>[] includeProperties)
         {
             IQueryable<T> query = Table;
             if (filter != null)
@@ -44,7 +44,7 @@ namespace MyBlog.Data.Repositories.Concretes
             return await query.ToListAsync();
         }
 
-        public async Task<T> GetAsync(Expression<Func<T, bool>> filter , params Expression<Func<T, bool>>[] includeProperties)
+        public async Task<T> GetAsync(Expression<Func<T, bool>> filter , params Expression<Func<T, object>>[] includeProperties)
         {
             IQueryable<T> query = Table;
             query = query.Where(filter);

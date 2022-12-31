@@ -21,10 +21,10 @@ namespace MyBlog.Services.RepoServices.Concretes.Articles
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<List<ArticleVM>> GetAllArticleAsync()
+        public async Task<List<ArticleVM>> GetAllArticlesWithCategoryNonDeletedAsync()
         {
             
-          var articles  =   await _unitOfWork.GetReadRepository<Article>().GetAllAsync();
+          var articles  =   await _unitOfWork.GetReadRepository<Article>().GetAllAsync(x => !x.IsDeleted,y => y.Category);
             return _mapper.Map<List<ArticleVM>>(articles);
         }
     }
