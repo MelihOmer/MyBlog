@@ -27,5 +27,10 @@ namespace MyBlog.Services.RepoServices.Concretes.Articles
           var articles  =   await _unitOfWork.GetReadRepository<Article>().GetAllAsync(x => !x.IsDeleted,y => y.Category);
             return _mapper.Map<List<ArticleVM>>(articles);
         }
+        public async Task<ArticleVM> GetAllArticleWithCategoryNonDeletedAsync(Guid ArticleId)
+        {
+            var articles = await _unitOfWork.GetReadRepository<Article>().GetAsync(x => !x.IsDeleted && x.Id == ArticleId, y => y.Category);
+            return _mapper.Map<ArticleVM>(articles);
+        }
     }
 }

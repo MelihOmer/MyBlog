@@ -11,7 +11,7 @@ namespace MyBlog.Services.RepoServices.Abstractions.Articles
     public interface IArticleReadService
     {      
         Task<List<ArticleVM>> GetAllArticlesWithCategoryNonDeletedAsync();
-
+        Task<ArticleVM> GetAllArticleWithCategoryNonDeletedAsync(Guid ArticleId);
 
 
 

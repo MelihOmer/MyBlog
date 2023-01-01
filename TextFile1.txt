@@ -1,0 +1,3 @@
+﻿16.Video
+31.Dakikada kaldım
+*Makale Ekleme sayfası hazırlandı action yazılması için VM hazırlandı categoryler listbox dan alınması için categoryVM hazırlandı ve category için read servis sınıfı oluşturulup içerisine getAll() methodu yazıldı.
