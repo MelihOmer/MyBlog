@@ -26,13 +26,9 @@ namespace MyBlog.Services.RepoServices.Concretes.Articles
         public async Task CreateArticleAsync(ArticleAddVM articleAddVM)
         {
             var userId = Guid.Parse("B0F21285-8B81-4C46-BC74-3E1DB74290FB");
-            var article = new Article
-            {
-                Title = articleAddVM.Title,
-                Content = articleAddVM.Content,
-                CategoryId = articleAddVM.CategoryId,
-                UserId = userId
-            };
+            var article = new Article(articleAddVM.Title,articleAddVM.Content,userId,articleAddVM.CategoryId);
+
+
             await UnitOfWork.GetWriteRepository<Article>().AddAsync(article);
             await UnitOfWork.SaveAsync();
         }

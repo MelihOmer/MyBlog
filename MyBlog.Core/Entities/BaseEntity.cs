@@ -8,6 +8,7 @@ namespace MyBlog.Core.Entities
 {
     public abstract class BaseEntity : IBaseEntity
     {
+        
         public virtual Guid Id { get; set; } = new Guid();
         public virtual string CreatedBy { get; set; } = "Undefined";
         public virtual string? ModifiedBy { get; set; }
