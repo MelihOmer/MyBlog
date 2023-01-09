@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using MyBlog.Services.FluentValidationsService;
 using MyBlog.Services.RepoServices.Abstractions.Articles;
@@ -29,6 +30,7 @@ namespace MyBlog.Services
                 opt.DisableDataAnnotationsValidation = true;
                 opt.ValidatorOptions.LanguageManager.Culture = new CultureInfo("tr");
             });
+            services.AddSingleton<IHttpContextAccessor,HttpContextAccessor>();
 
         }
     }

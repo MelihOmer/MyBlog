@@ -10,7 +10,7 @@ namespace MyBlog.Services.RepoServices.Abstractions.Articles
     public interface IArticleWriteService
     {
         Task CreateArticleAsync(ArticleAddVM articleAddVM);
-        Task UpdateArticleAsync(ArticleUpdateVM articleUpdateVM);
-        Task SafeDeleteArticleAsync(Guid articleId);
+        Task<string> UpdateArticleAsync(ArticleUpdateVM articleUpdateVM);
+        Task<string> SafeDeleteArticleAsync(Guid articleId);
     }
 }

@@ -6,6 +6,8 @@ using MyBlog.Entity.Models.Articles;
 using MyBlog.Services.Extensions;
 using MyBlog.Services.RepoServices.Abstractions.Articles;
 using MyBlog.Services.RepoServices.Abstractions.Categories;
+using MyBlog.Web.ToastrResultMessages;
+using NToastNotify;
 
 namespace MyBlog.Web.Areas.Admin.Controllers
 {
@@ -17,13 +19,15 @@ namespace MyBlog.Web.Areas.Admin.Controllers
         private readonly ICategoryReadService _categoryRead;
         private readonly IMapper _mapper;
         private readonly IValidator<Article> _validator;
-        public ArticleController(IArticleReadService articleRead, ICategoryReadService categoryRead, IArticleWriteService articleWrite,IMapper mapper,IValidator<Article> validator)
+        private readonly IToastNotification _toast;
+        public ArticleController(IArticleReadService articleRead, ICategoryReadService categoryRead, IArticleWriteService articleWrite, IMapper mapper, IValidator<Article> validator, IToastNotification toast)
         {
             _articleRead = articleRead;
             _categoryRead = categoryRead;
             _articleWrite = articleWrite;
             _mapper = mapper;
             _validator = validator;
+            _toast = toast;
         }
 
         public async Task<IActionResult> Index()
@@ -47,7 +51,8 @@ namespace MyBlog.Web.Areas.Admin.Controllers
             if (result.IsValid)
             {
                 await _articleWrite.CreateArticleAsync(articleAddVM);
-               return RedirectToAction("Index", "Article", new { Area = "Admin" });
+                _toast.AddSuccessToastMessage(Messages.ArticleMessages.Add(articleAddVM.Title), new ToastrOptions() { Title = "Ekleme Operasyonu."} );
+                return RedirectToAction("Index", "Article", new { Area = "Admin" });
             }
             else 
             {
@@ -80,7 +85,8 @@ namespace MyBlog.Web.Areas.Admin.Controllers
 
             if (result.IsValid)
             {
-                await _articleWrite.UpdateArticleAsync(articleUpdateVM);
+                string title = await _articleWrite.UpdateArticleAsync(articleUpdateVM);
+                _toast.AddSuccessToastMessage(Messages.ArticleMessages.Update(title), new ToastrOptions { Title = "Güncelleme Operasyonu." });
                 return RedirectToAction("Index", "Article", new { Area = "Admin" });
 
             }
@@ -98,7 +104,9 @@ namespace MyBlog.Web.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(Guid articleId)
         {
-            await _articleWrite.SafeDeleteArticleAsync(articleId);
+            
+           string title = await _articleWrite.SafeDeleteArticleAsync(articleId);
+            _toast.AddSuccessToastMessage(Messages.ArticleMessages.Delete(title), new ToastrOptions { Title = "Silme Operasyonu"});
             return RedirectToAction("Index", "Article", new { Area = "Admin" });
         }
     }

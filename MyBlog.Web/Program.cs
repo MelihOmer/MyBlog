@@ -3,6 +3,7 @@ using MyBlog.Data;
 using MyBlog.Data.Context;
 using MyBlog.Entity.Entities;
 using MyBlog.Services;
+using NToastNotify;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -38,7 +39,13 @@ builder.Services.ConfigureApplicationCookie(config => // Browserde yönetilen co
     config.AccessDeniedPath = new PathString("/Admin/Auth/Logout/AccessDenied");
 });
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews()
+    .AddNToastNotifyToastr(new ToastrOptions()
+    {
+        PositionClass = ToastPositions.TopRight,
+        TimeOut = 3000
+
+    });
 
 var app = builder.Build();
 
@@ -50,6 +57,8 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
+app.UseNToastNotify();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseSession();
